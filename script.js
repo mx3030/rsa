@@ -1,11 +1,16 @@
-var key_size=256
+var key_size_alice=32
+var key_size_bob=32
 var key_alice=[]
 var key_bob=[]
 var selected_key=-1
 
+function update_settings_alice(){
+    key_size_alice=$('#key-size-alice').val()
+}
+
 function gen_key(name){
     if(name=='alice'){
-        [n,e,d]=rsaKey(key_size);
+        [n,e,d]=rsaKey(key_size_alice);
         key_alice=[n,e,d];
         console.log(n,e,d);
         $('#private-n-alice').val(n);
@@ -13,7 +18,7 @@ function gen_key(name){
         $('#public-n-alice').val(n);
         $('#public-e-alice').val(e);
     } else if(name=='bob'){
-        [n,e,d]=rsaKey(key_size);
+        [n,e,d]=rsaKey(key_size_bob);
         key_bob=[n,e,d];
         console.log(n,e,d);
         $('#private-n-bob').val(n);

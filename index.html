@@ -23,6 +23,11 @@
                             <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
                             </svg>
                         </button>
+                        <button id="gen-key-alice" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modal-settings-alice" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-sliders2" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10.5 1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4H1.5a.5.5 0 0 1 0-1H10V1.5a.5.5 0 0 1 .5-.5ZM12 3.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-6.5 2A.5.5 0 0 1 6 6v1.5h8.5a.5.5 0 0 1 0 1H6V10a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5ZM1 8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 1 8Zm9.5 2a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V13H1.5a.5.5 0 0 1 0-1H10v-1.5a.5.5 0 0 1 .5-.5Zm1.5 2.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z"/>
+                            </svg>                        
+                        </button>
                     </div>
                     <div class="row my-2">
                         <div id="key-0"class="col-5 border rounded mx-auto">
@@ -77,6 +82,11 @@
                             <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
                             <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
                             </svg>
+                        </button>
+                        <button id="gen-key-alice" type="button" class="btn btn-dark">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-sliders2" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10.5 1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4H1.5a.5.5 0 0 1 0-1H10V1.5a.5.5 0 0 1 .5-.5ZM12 3.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm-6.5 2A.5.5 0 0 1 6 6v1.5h8.5a.5.5 0 0 1 0 1H6V10a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5ZM1 8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 1 8Zm9.5 2a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V13H1.5a.5.5 0 0 1 0-1H10v-1.5a.5.5 0 0 1 .5-.5Zm1.5 2.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z"/>
+                            </svg>                        
                         </button>
                     </div>
                     <div class="row my-2">
@@ -201,10 +211,10 @@
                         <h5 class="modal-title" id="exampleModalLabel">n von Alice</h5>
                     </div>
                     <div class="modal-body">
-                                                <div class="">
+                        <div class="">
                             <textarea id="modal-n-alice" class="form-control rounded-0 shadow-none" placeholder="" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
-                         <div class="btn-group w-100">
+                        <div class="btn-group w-100">
                             <button class="btn btn-sm btn-light border rounded-0" onclick="convert2bin()" type="button">binär</button>
                             <button class="btn btn-sm btn-light border rounded-0" onclick="convert2hex()" type="button">hex</button>
                             <button class="btn btn-sm btn-light border rounded-0" onclick="convert2dec()" type="button">dezimal</button>
@@ -217,6 +227,28 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="modal-settings-alice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Einstellungen von Alice</h5>
+                    </div>
+                    <div class="modal-body">
+                            <div class="form-group row">
+                                <label  class="col-form-label col-6">Schlüsselgröße</label>
+                                <div class="col-6"> 
+                                    <input  class="form-control" id="key-size-alice" placeholder="">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="update_settings_alice()" class="btn btn-outline-dark">Anwenden</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script src="rsa.js"></script>
         <script src="script.js"></script>
     </body>
