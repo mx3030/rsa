@@ -33,7 +33,7 @@
                                 <img src="img/tresor.png" class="rounded" onclick="select_key(0)" style="width:50%">
                             </div>
                             <div class="input-group m-2 w-75 mx-auto">
-                                <button class="btn btn-outline-secondary text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon1">n=</button>
+                                <button class="btn btn-outline-secondary text-dark" onclick="update_modal_private_n_alice()" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" id="button-addon1">n=</button>
                                 <input id="private-n-alice" type="text" class="form-control border border-secondary" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                             <div class="input-group m-2 w-75 mx-auto">
@@ -183,7 +183,6 @@
                                     </svg>
                                 </button>
                             </div>
-
                         </div>                        
                         <div class="">
                             <textarea id="num-bob" class="form-control rounded-0" placeholder="Zahlen" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -199,17 +198,21 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Privater Schlüssel von Alice</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel">n von Alice</h5>
                     </div>
                     <div class="modal-body">
-                        ...
+                                                <div class="">
+                            <textarea id="modal-n-alice" class="form-control rounded-0 shadow-none" placeholder="" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                         <div class="btn-group w-100">
+                            <button class="btn btn-sm btn-light border rounded-0" onclick="convert2bin()" type="button">binär</button>
+                            <button class="btn btn-sm btn-light border rounded-0" onclick="convert2hex()" type="button">hex</button>
+                            <button class="btn btn-sm btn-light border rounded-0" onclick="convert2dec()" type="button">dezimal</button>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" onclick="update_n_alice()" class="btn btn-outline-dark">Anwenden</button>
                     </div>
                 </div>
             </div>

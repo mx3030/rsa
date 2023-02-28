@@ -1,10 +1,11 @@
+var key_size=256
 var key_alice=[]
 var key_bob=[]
 var selected_key=-1
 
 function gen_key(name){
     if(name=='alice'){
-        [n,e,d]=rsaKey(100);
+        [n,e,d]=rsaKey(key_size);
         key_alice=[n,e,d];
         console.log(n,e,d);
         $('#private-n-alice').val(n);
@@ -12,7 +13,7 @@ function gen_key(name){
         $('#public-n-alice').val(n);
         $('#public-e-alice').val(e);
     } else if(name=='bob'){
-        [n,e,d]=rsaKey(100);
+        [n,e,d]=rsaKey(key_size);
         key_bob=[n,e,d];
         console.log(n,e,d);
         $('#private-n-bob').val(n);
@@ -116,3 +117,24 @@ function send_msg(name){
         $('#msg-alice').val('');
     }
 }
+
+
+function update_modal_private_n_alice(){
+    $("#modal-n-alice").val($("#private-n-alice").val());
+}
+
+var modal_n_alice = 0; //0=dezimal, 1=hex, 2=binär
+function update_n_alice(){ 
+    if(modal_n_alice==0){
+        $("#private-n-alice").val($("#modal-n-alice").val());
+        $("#public-n-alice").val($("#modal-n-alice").val());
+    }
+}
+
+$("#private-n-alice").on("input", function() {
+    $("#public-n-alice").val(this.value);
+});
+
+$("#public-n-alice").on("input", function() {
+    $("#private-n-alice").val(this.value);
+});
