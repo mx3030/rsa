@@ -56,8 +56,10 @@ function expm(a,k,n){
 /*-----------------------------------------*/
 
 function genRandBigInt(lowBigInt, highBigInt) {
-  if (lowBigInt >= highBigInt) {
+  if (lowBigInt > highBigInt) {
     throw new Error('lowBigInt must be smaller than highBigInt');
+  } else if (lowBigInt==highBigInt){
+    return lowBigInt;
   }
 
   const difference = highBigInt - lowBigInt;
@@ -77,9 +79,12 @@ function genRandBigInt(lowBigInt, highBigInt) {
 }
 
 function is_prime(n,t){
+    if(n==BigInt(2)){
+        return true;
+    }
     for(var i=0;i<t;i++){
-        var a = genRandBigInt(2n,n-1n);
-        var r = expm(a,n-1n,n);
+        var a = genRandBigInt(BigInt(2),n-1n);
+        var r = expm(a,n-BigInt(1),n);
     }
     if(r!=1){
         return false;
@@ -101,9 +106,12 @@ function generateRandomBinary(binaryLength) {
 
 function prime(d){
     var isprime=false;
+    var r = 0n;
     while(isprime==false){
         var r = BigInt(generateRandomBinary(d));
-        isprime=is_prime(r,30n);
+        if(r>2n){
+            isprime=is_prime(r,30n);
+        }
     }
     return r
 }
@@ -113,9 +121,19 @@ function prime(d){
 function rsaKey(s){
     var p = prime(s);
     var q = prime(s);
+    while(p==q){
+        q=prime(s);
+    }
     var n = p*q;
+    console.log(p,q,n);
     var phi = (p-1n)*(q-1n);
-    var e = 37n;
+    var good_e=[65537n,257n,17n,5n,3n]
+    for(var i=0;i<good_e.length;i++){
+        if(good_e[i]<phi){
+            var e=good_e[i];
+            break;
+        }
+    }
     var d = invm(phi,e);
     return [n,e,d]; 
 }
@@ -229,3 +247,7 @@ function decMsg(n,d,arr){
     return [arr_dec,msg_dec];
 }
 
+
+/*-----------------------------------------*/
+
+//var table=['a','b','c','d','e','']

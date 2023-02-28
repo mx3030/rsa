@@ -3,6 +3,63 @@ var key_size_bob=32n
 var key_alice=[]
 var key_bob=[]
 var selected_key=-1
+var selected_view=-1
+
+function change_view(name){
+    if(name=='alice' && selected_view!=0){
+        $('#button-alice').removeClass('btn-dark');
+        $('#button-alice').addClass('btn-success');
+        $('#button-bob').removeClass('btn-success');
+        $('#button-bob').addClass('btn-dark');
+        $('#button-oscar').removeClass('btn-success');
+        $('#button-oscar').addClass('btn-dark');
+        $('#key-3').css('visibility','hidden');
+        $('#key-0').css('visibility','visible');
+        $('#col-bob').css('visibility','hidden');
+        $('#col-oscar').css('visibility','hidden');
+        $('#col-alice').css('visibility','visible');
+        selected_view=0;
+    } else if(name=='bob' && selected_view!=1){
+        $('#button-bob').removeClass('btn-dark');
+        $('#button-bob').addClass('btn-success');
+        $('#button-alice').removeClass('btn-success');
+        $('#button-alice').addClass('btn-dark');
+        $('#button-oscar').removeClass('btn-success');
+        $('#button-oscar').addClass('btn-dark');
+        $('#key-0').css('visibility','hidden');
+        $('#key-3').css('visibility','visible');
+        $('#col-alice').css('visibility','hidden');
+        $('#col-oscar').css('visibility','hidden');
+        $('#col-bob').css('visibility','visible');
+        selected_view=1;
+    } else if(name=='oscar' && selected_view!=2){
+        $('#button-oscar').removeClass('btn-dark');
+        $('#button-oscar').addClass('btn-success');
+        $('#button-alice').removeClass('btn-success');
+        $('#button-alice').addClass('btn-dark');
+        $('#button-bob').removeClass('btn-success');
+        $('#button-bob').addClass('btn-dark');
+        $('#key-0').css('visibility','hidden');
+        $('#key-3').css('visibility','hidden');
+        $('#col-alice').css('visibility','hidden');
+        $('#col-bob').css('visibility','hidden');
+        $('#col-oscar').css('visibility','visible');
+        selected_view=2;
+    } else {
+        $('#button-alice').removeClass('btn-succes');
+        $('#button-alice').addClass('btn-dark');
+        $('#button-bob').removeClass('btn-succes');
+        $('#button-bob').addClass('btn-dark');
+        $('#button-oscar').removeClass('btn-succes');
+        $('#button-oscar').addClass('btn-dark');
+        $('#col-alice').css('visibility','visible');
+        $('#col-bob').css('visibility','visible');
+        $('#col-oscar').css('visibility','visible');
+        $('#key-0').css('visibility','visible');
+        $('#key-3').css('visibility','visible');
+        selected_view=-1;
+    }
+}
 
 function update_settings_alice(){
     key_size_alice=BigInt($('#key-size-alice').val())
@@ -12,7 +69,6 @@ function gen_key(name){
     if(name=='alice'){
         [n,e,d]=rsaKey(key_size_alice);
         key_alice=[n,e,d];
-        console.log(n,e,d);
         $('#private-n-alice').val(n);
         $('#private-d-alice').val(d);
         $('#public-n-alice').val(n);
@@ -20,7 +76,6 @@ function gen_key(name){
     } else if(name=='bob'){
         [n,e,d]=rsaKey(key_size_bob);
         key_bob=[n,e,d];
-        console.log(n,e,d);
         $('#private-n-bob').val(n);
         $('#private-d-bob').val(d);
         $('#public-n-bob').val(n);

@@ -16,7 +16,7 @@
             <div id="key-container" class="row m-3">
                 <div id="key-alice" class="col-4">
                     <div class="text-center mt-2">
-                        <button type="button" class="btn btn-dark w-25">Alice</button>
+                        <button id="button-alice" type="button" class="btn btn-dark w-25" onclick="change_view('alice')">Alice</button>
                         <button id="gen-key-alice" onclick="gen_key('alice')" type="button" class="btn btn-dark">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
@@ -66,7 +66,7 @@
                 </div>
                 <div class=col-4>
                     <div class="text-center mt-2">
-                        <button type="button" class="btn btn-outline-dark">Internet</button>
+                        <button id="button-oscar" type="button" class="btn btn-dark" onclick="change_view('oscar')">Oscar</button>
                     </div>
                     <div class="row my-2">
                         <div class="text-center" style=""> 
@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-4">
                     <div class="text-center mt-2">
-                        <button type="button" class="btn btn-dark w-25">Bob</button>
+                        <button id="button-bob" type="button" class="btn btn-dark w-25" onclick="change_view('bob')">Bob</button>
                         <button type="button" class="btn btn-dark" onclick="gen_key('bob')">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
@@ -127,7 +127,7 @@
                 </div>
             </div>
             <div id="msg-container" class="row m-3">
-                <div class="col-4">
+                <div id="col-alice" class="col-4">
                     <div class="m-2">
                         <div class="">
                             <textarea class="form-control rounded-0" placeholder="Nachricht" id="msg-alice" rows="3"></textarea>
@@ -160,7 +160,7 @@
 
                 </div>
 
-                <div class="col-4">
+                <div id="col-oscar" class="col-4">
                     <div class="m-2">
                         <div class="">
                             <textarea id="inet" class="form-control rounded-0" placeholder="" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -168,7 +168,7 @@
                     </div>
                 </div>
 
-                <div class="col-4">
+                <div id="col-bob" class="col-4">
                     <div class="m-2">
                         <div class="">
                             <textarea id="msg-bob" class="form-control rounded-0" placeholder="Nachricht" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -204,7 +204,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -228,19 +228,26 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modal-settings-alice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal" id="modal-settings-alice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Einstellungen von Alice</h5>
                     </div>
                     <div class="modal-body">
-                            <div class="form-group row">
-                                <label  class="col-form-label col-6">Schlüsselgröße</label>
-                                <div class="col-6"> 
-                                    <input class="form-control" id="key-size-alice" placeholder=""></input>
-                                </div>
+                        <div class="form-group row">
+                            <label  class="col-form-label col-6">max. Bits Primzahl</label>
+                            <div class="col-6"> 
+                                <input class="form-control" id="key-size-alice" placeholder=""></input>
                             </div>
+                        </div>
+                        <div class="form-group row mt-2">
+                            <label  class="col-form-label col-6">Buchstaben &#x2194 Zahlen</label>
+                            <div class="col-6"> 
+                                <input class="form-control" id="key-size-alice" placeholder=""></input>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" onclick="update_settings_alice()" class="btn btn-outline-dark">Anwenden</button>
