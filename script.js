@@ -6,13 +6,12 @@ var selected_key=-1
 var selected_view=-1
 
 function change_view(name){
-    if(name=='alice' && selected_view!=0){
-        $('#button-alice').removeClass('btn-dark');
-        $('#button-alice').addClass('btn-success');
-        $('#button-bob').removeClass('btn-success');
-        $('#button-bob').addClass('btn-dark');
-        $('#button-oscar').removeClass('btn-success');
-        $('#button-oscar').addClass('btn-dark');
+    if(name=='alice' && selected_view!=0){ 
+        $('#button-alice').addClass('btn-dark text-white');
+        $('#button-bob').removeClass('btn-dark text-white');
+        $('#button-bob').addClass('btn-outline-dark text-dark');
+        $('#button-oscar').removeClass('btn-dark text-white');
+        $('#button-oscar').addClass('btn-outline-dark text-dark');
         $('#key-3').css('visibility','hidden');
         $('#key-0').css('visibility','visible');
         $('#col-bob').css('visibility','hidden');
@@ -20,12 +19,11 @@ function change_view(name){
         $('#col-alice').css('visibility','visible');
         selected_view=0;
     } else if(name=='bob' && selected_view!=1){
-        $('#button-bob').removeClass('btn-dark');
-        $('#button-bob').addClass('btn-success');
-        $('#button-alice').removeClass('btn-success');
-        $('#button-alice').addClass('btn-dark');
-        $('#button-oscar').removeClass('btn-success');
-        $('#button-oscar').addClass('btn-dark');
+        $('#button-bob').addClass('btn-dark text-white');
+        $('#button-alice').removeClass('btn-dark text-white');
+        $('#button-alice').addClass('btn-outline-dark text-dark');
+        $('#button-oscar').removeClass('btn-dark text-white');
+        $('#button-oscar').addClass('btn-outline-dark text-dark');
         $('#key-0').css('visibility','hidden');
         $('#key-3').css('visibility','visible');
         $('#col-alice').css('visibility','hidden');
@@ -33,12 +31,11 @@ function change_view(name){
         $('#col-bob').css('visibility','visible');
         selected_view=1;
     } else if(name=='oscar' && selected_view!=2){
-        $('#button-oscar').removeClass('btn-dark');
-        $('#button-oscar').addClass('btn-success');
-        $('#button-alice').removeClass('btn-success');
-        $('#button-alice').addClass('btn-dark');
-        $('#button-bob').removeClass('btn-success');
-        $('#button-bob').addClass('btn-dark');
+        $('#button-oscar').addClass('btn-dark text-white');
+        $('#button-alice').removeClass('btn-dark text-white');
+        $('#button-alice').addClass('btn-outline-dark text-dark');
+        $('#button-bob').removeClass('btn-dark text-white');
+        $('#button-bob').addClass('btn-outline-dark text-dark');
         $('#key-0').css('visibility','hidden');
         $('#key-3').css('visibility','hidden');
         $('#col-alice').css('visibility','hidden');
@@ -46,12 +43,12 @@ function change_view(name){
         $('#col-oscar').css('visibility','visible');
         selected_view=2;
     } else {
-        $('#button-alice').removeClass('btn-succes');
-        $('#button-alice').addClass('btn-dark');
-        $('#button-bob').removeClass('btn-succes');
-        $('#button-bob').addClass('btn-dark');
-        $('#button-oscar').removeClass('btn-succes');
-        $('#button-oscar').addClass('btn-dark');
+        $('#button-alice').removeClass('btn-outline-dark text-dark');
+        $('#button-alice').addClass('btn-dark text-white');
+        $('#button-bob').removeClass('btn-outline-dark text-dark');
+        $('#button-bob').addClass('btn-dark text-white');
+        $('#button-oscar').removeClass('btn-outline-dark text-dark');
+        $('#button-oscar').addClass('btn-dark text-white');
         $('#col-alice').css('visibility','visible');
         $('#col-bob').css('visibility','visible');
         $('#col-oscar').css('visibility','visible');
@@ -85,10 +82,15 @@ function gen_key(name){
 
 function select_key(number){
     selected_key=number;
-    $('#key-'+number).addClass("border-dark bg-light");
+    //$('#key-'+number).addClass("border-dark bg-light");
+    if(selected_key==1 || selected_key==2){
+        $('#key-'+number).addClass("border-warning border-3 bg-light");
+    } else{ 
+        $('#key-'+number).addClass("border-success border-3 bg-light");
+    }
     for(var i=0;i!=number,i<4;i++){
         if(i!=number){
-            $('#key-'+i).removeClass("border-dark bg-light");
+            $('#key-'+i).removeClass("border-dark bg-light border-3 border-warning border-success");
         }
     }
 }
