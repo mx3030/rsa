@@ -1,11 +1,11 @@
-var key_size_alice=32
-var key_size_bob=32
+var key_size_alice=32n
+var key_size_bob=32n
 var key_alice=[]
 var key_bob=[]
 var selected_key=-1
 
 function update_settings_alice(){
-    key_size_alice=$('#key-size-alice').val()
+    key_size_alice=BigInt($('#key-size-alice').val())
 }
 
 function gen_key(name){
