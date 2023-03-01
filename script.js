@@ -59,7 +59,12 @@ function change_view(name){
 }
 
 function update_settings_alice(){
-    key_size_alice=BigInt($('#key-size-alice').val())
+    key_size_alice=BigInt($('#key-size-alice').val());
+    $('#modal-settings-alice').modal('hide');
+}
+
+function close_settings_alice(){
+    $('#modal-settings-alice').modal('hide');
 }
 
 function gen_key(name){
