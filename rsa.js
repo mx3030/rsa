@@ -129,7 +129,7 @@ function rsaKey(s){
         var q = prime(s);
     }   
     var n = p*q;
-    console.log(p,q,n);
+    console.log(p,q);
     var phi = (p-1n)*(q-1n);
     var good_e=[65537n,257n,17n,5n,3n]
     for(var i=0;i<good_e.length;i++){
@@ -161,7 +161,6 @@ function base2int(b,l){
     for(var i=0;i<l.length;i++){
         res=res+l[i]*(b**BigInt(i));
     }
-    console.log(res)
     return res;
 }
 
@@ -178,7 +177,6 @@ function string2int(s,table=[-1]){
         for (var i=0;i<s.length;i++){
             arr.push(BigInt(table.indexOf(s[i])+1));
         }
-        console.log(arr)
         m=base2int(len+1n,arr);
         /*wenn base2int(len,arr), dann abc=bc*/
     }
@@ -213,10 +211,6 @@ function int2str(m,table=[-1]){
     }
     return msg;
 }
-
-
-var table=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',',','.','?','!',' '];
-console.log(int2str(31n,table))
 
 function slice_string(s,n){
     /*slice string s in parts with n characters*/
@@ -277,7 +271,6 @@ function decMsg(n,d,arr,table=[-1]){
     }
     return [arr_dec,msg_dec];
 }
-
 
 /*-----------------------------------------*/
 
