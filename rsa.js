@@ -1,5 +1,5 @@
 function mod(n, m) {
-  return BigInt(((n % m) + m) % m);
+    return BigInt(((n % m) + m) % m);
 }
 
 function gcd(a,b){ 
@@ -38,7 +38,7 @@ function invm(m,a){
 /*-----------------------------------------*/
 
 function dec2bin(dec) {
-  return BigInt(dec).toString(2);
+    return BigInt(dec).toString(2);
 }
 
 function expm(a,k,n){
@@ -56,52 +56,56 @@ function expm(a,k,n){
 /*-----------------------------------------*/
 
 function genRandBigInt(lowBigInt, highBigInt) {
-  if (lowBigInt > highBigInt) {
-    throw new Error('lowBigInt must be smaller than highBigInt');
-  } else if (lowBigInt==highBigInt){
-    return lowBigInt;
-  }
+    if (lowBigInt > highBigInt) {
+        throw new Error('lowBigInt must be smaller than highBigInt');
+    } else if (lowBigInt==highBigInt){
+        return lowBigInt;
+    }
 
-  const difference = highBigInt - lowBigInt;
-  const differenceLength = difference.toString().length;
-  let multiplier = '';
-  while (multiplier.length < differenceLength) {
-    multiplier += Math.random()
-      .toString()
-      .split('.')[1];
-  }
-  multiplier = multiplier.slice(0, differenceLength);
-  const divisor = '1' + '0'.repeat(differenceLength);
+    const difference = highBigInt - lowBigInt;
+    const differenceLength = difference.toString().length;
+    let multiplier = '';
+    while (multiplier.length < differenceLength) {
+        multiplier += Math.random()
+        .toString()
+        .split('.')[1];
+    }
+    multiplier = multiplier.slice(0, differenceLength);
+    const divisor = '1' + '0'.repeat(differenceLength);
 
-  const randomDifference = (difference * BigInt(multiplier)) / BigInt(divisor);
+    const randomDifference = (difference * BigInt(multiplier)) / BigInt(divisor);
 
-  return lowBigInt + randomDifference;
+    return lowBigInt + randomDifference;
 }
 
 function is_prime(n,t){
     if(n==BigInt(2)){
         return true;
-    }
-    for(var i=0;i<t;i++){
-        var a = genRandBigInt(BigInt(2),n-1n);
-        var r = expm(a,n-BigInt(1),n);
-    }
-    if(r!=1){
+    } else if(n<BigInt(2)){
         return false;
     }
+    for(var i=0;i<t;i++){
+        var a = genRandBigInt(BigInt(2),n-BigInt(1));
+        var r = expm(a,n-BigInt(1),n);
+        if(r!=1){
+            return false;
+        }
+    }
+
     return true;
 }
 
 function randomDigit() {
-  return Math.floor(Math.random() * Math.floor(2));
+    return Math.floor(Math.random() * Math.floor(2));
 }
 
 function generateRandomBinary(binaryLength) {
-  let binary = "0b";
-  for(let i = 0; i < binaryLength; ++i) {
-    binary += randomDigit();
-  }
-  return binary;
+    let binary = "0b";
+    //binary+=1
+    for(let i = 0; i < binaryLength; ++i) {
+        binary += randomDigit();
+    }
+    return binary;
 }
 
 function prime(d){
@@ -109,21 +113,21 @@ function prime(d){
     var r = 0n;
     while(isprime==false){
         var r = BigInt(generateRandomBinary(d));
-        if(r>2n){
-            isprime=is_prime(r,30n);
-        }
+        isprime=is_prime(r,30n);
     }
     return r
 }
 
+
 /*-----------------------------------------*/
 
 function rsaKey(s){
-    var p = prime(s);
-    var q = prime(s);
-    while(p==q){
-        q=prime(s);
-    }
+    var p=0n
+    var q=0n
+    while(p==q || ((p==2n && q==3n) || (p==3n && q==2n))){
+        var p = prime(s);
+        var q = prime(s);
+    }   
     var n = p*q;
     console.log(p,q,n);
     var phi = (p-1n)*(q-1n);
@@ -131,7 +135,9 @@ function rsaKey(s){
     for(var i=0;i<good_e.length;i++){
         if(good_e[i]<phi){
             var e=good_e[i];
-            break;
+            if(gcd(e,phi)==1){
+                break;
+            }
         }
     }
     var d = invm(phi,e);
@@ -152,19 +158,31 @@ function rsaDec(n,d,y){
 function base2int(b,l){
     var res = 0n;
     l.reverse();
-    for(var i=0n;i<l.length;i++){
-        res=res+l[i]*(b**i);
+    for(var i=0;i<l.length;i++){
+        res=res+l[i]*(b**BigInt(i));
     }
+    console.log(res)
     return res;
 }
 
-function string2int(s){
-    var base256=[]
-    for(var i=0;i<s.length;i++){
-        base256.push(BigInt(s[i].charCodeAt(0)));
+function string2int(s,table=[-1]){
+    var arr=[]
+    if(table[0]==-1){
+        /*use ascii*/
+        for(var i=0;i<s.length;i++){
+            arr.push(BigInt(s[i].charCodeAt(0)));
+        }
+        m = base2int(256n,arr);
+    } else {
+        var len = BigInt(table.length);
+        for (var i=0;i<s.length;i++){
+            arr.push(BigInt(table.indexOf(s[i])+1));
+        }
+        console.log(arr)
+        m=base2int(len+1n,arr);
+        /*wenn base2int(len,arr), dann abc=bc*/
     }
-    m = base2int(256n,base256);
-    return m
+    return m;
 }
 
 function base_expansion(n,b){
@@ -178,14 +196,27 @@ function base_expansion(n,b){
     return chars;
 }
 
-function int2str(m){
-    var l = base_expansion(m,256n);
-    msg='';
-    for(var i=0;i<l.length;i++){
-        msg = msg + String.fromCharCode(Number(l[i]));
+function int2str(m,table=[-1]){
+    var msg = '';
+    if(table[0]==-1){
+        /*ascii*/
+        var l = base_expansion(m,256n);
+        for(var i=0;i<l.length;i++){
+            msg = msg + String.fromCharCode(Number(l[i]));
+        }
+    } else {
+        var len = BigInt(table.length);
+        var l = base_expansion(m,len+1n);
+        for (var i=0;i<l.length;i++){
+            msg = msg + table[l[i]-1n];
+        }
     }
     return msg;
 }
+
+
+var table=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',',','.','?','!',' '];
+console.log(int2str(31n,table))
 
 function slice_string(s,n){
     /*slice string s in parts with n characters*/
@@ -196,52 +227,52 @@ function slice_string(s,n){
     return str_parts
 }
 
-function msg2int(msg,n){
+function msg2int(msg,n,table=[-1]){
     var str_parts=slice_string(msg,n);
     var int_parts=[];
     for(var i=0;i<str_parts.length;i++){
-        int_parts.push(string2int(str_parts[i]));
+        int_parts.push(string2int(str_parts[i],table));
     }
     return int_parts;
 }
 
-function int2msg(int_parts){
+function int2msg(int_parts,table=[-1]){
     /*number array to string parts*/
     var str_parts=[];
     var msg='';
     for(var i=0;i<int_parts.length;i++){
-        var str = int2str(BigInt(int_parts[i]));
+        var str = int2str(BigInt(int_parts[i]),table);
         str_parts.push(str);
         msg=msg+str;
     }
     return msg;
 }
 
-function encMsg(n,e,arr){
+function encMsg(n,e,arr,table=[-1]){
     /*encrypt message in form of big int array
-     * returns encrypted array and message
-     * */
+    * returns encrypted array and message
+    * */
     var arr_enc = [];
     var msg_enc='';
     for(var i=0;i<arr.length;i++){
         var int_enc = rsaEnc(n,e,arr[i]);
         arr_enc.push(int_enc);
-        var str_enc = int2str(int_enc);
+        var str_enc = int2str(int_enc,table);
         msg_enc=msg_enc+str_enc;
     }
     return [arr_enc,msg_enc];
 }
 
-function decMsg(n,d,arr){
+function decMsg(n,d,arr,table=[-1]){
     /*decrypt message in form of big int array
-     * returns decrypted array and message
-     * */
+    * returns decrypted array and message
+    * */
     var arr_dec=[];
     var msg_dec='';
     for(var i=0;i<arr.length;i++){
         var int_dec = rsaDec(n,d,arr[i]);
         arr_dec.push(int_dec);
-        var str_dec = int2str(int_dec);
+        var str_dec = int2str(int_dec,table);
         msg_dec=msg_dec+str_dec;
     }
     return [arr_dec,msg_dec];
@@ -250,5 +281,4 @@ function decMsg(n,d,arr){
 
 /*-----------------------------------------*/
 
-var table=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',',','.','?','!'];
 
