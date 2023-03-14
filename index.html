@@ -14,7 +14,7 @@
     <body>
 
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -29,27 +29,38 @@
                 <li class="nav-item">
                 <a class="nav-link" href="rsa.pdf" target="_blank">Skript</a>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href="prime/prime.html" target="_blank">Primzahlen</a>
-                </li>
-
+                <!--<li class="nav-item">-->
+                <!--<a class="nav-link" href="prime/prime.html" target="_blank">Primzahlen</a>-->
+                <!--</li>-->
             </ul>
         </div>
         </nav>
 
         <div class=container-fluid style="">
-            <div id="key-container" class="row mx-3 mt-5">
-                <div id="key-alice" class="col-4">
-                    <div class="text-center mt-2">
+            <div class="row mx-3 mt-5">
+                <div id="alice" class="col-sm-12 col-md-4">
+                    <div id="alice-top" class="text-center mt-2">
                         <button id="button-alice" type="button" class="btn btn-dark w-25" onclick="change_view('alice')">Alice</button>
                         <button id="gen-key-alice" onclick="gen_key('alice')" type="button" class="btn btn-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
                             <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
                             </svg>
                         </button>
                     </div>
-                    <div class="row my-2">
+                    <div id="alice-key-container" class="row my-2">
+                        <div id="key-sym-alice" class="col-8 border rounded mx-auto d-flex flex-column d-none">
+                            <div class="text-center my-2">
+                                <span>geheimer Schlüssel</span>
+                            </div>
+                            <div class="text-center m-2" style=""> 
+                                <img src="img/tresor.png" class="rounded" onclick="select_key(0)" style="width:50%">
+                            </div>
+                            <div id="secret-key-container" class="input-group m-2 w-50 mx-auto" style="">
+                                <button class="btn btn-light border border-1 border-dark text-dark wrong-n-alice" type="button">k=</button>
+                                <input id="secret-key-alice" type="text" class="form-control border border-1 border-dark wrong-n-alice" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
                         <div id="key-0"class="col-5 border rounded mx-auto d-flex flex-column">
                             <div class="text-center my-2">
                                 <span>privater Schlüssel</span>
@@ -57,11 +68,11 @@
                             <div class="text-center m-2" style=""> 
                                 <img src="img/tresor.png" class="rounded" onclick="select_key(0)" style="width:50%">
                             </div>
-                            <div id="private-n-alice-container" class="input-group m-2 w-75 mx-auto" style="">
+                            <div id="private-n-alice-container" class="input-group m-2 w-100 mx-auto" style="">
                                 <button class="btn btn-light border border-1 border-dark text-dark wrong-n-alice" onclick="update_modal_n_alice()" data-bs-toggle="modal" data-bs-target="#modal-n-alice" type="button" id="button-addon1">n=</button>
                                 <input id="private-n-alice" type="text" class="form-control border border-1 border-dark wrong-n-alice" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
-                            <div id="private-d-alice-container"class="input-group m-2 w-75 mx-auto">
+                            <div id="private-d-alice-container"class="input-group m-2 w-100 mx-auto">
                                 <button class="btn btn-light border border-1 border-dark text-dark" onclick="update_modal_private_d_alice()" data-bs-toggle="modal" data-bs-target="#modal-private-d-alice" type="button" id="button-addon1">d=</button>
                                 <input id="private-d-alice" type="text" class="form-control border border-1 border-dark" placeholder="" aria-label="Username" aria-describedby="basic-addon1">                            
                             </div>
@@ -73,88 +84,29 @@
                             <div class="text-center m-2" style=""> 
                                 <img src="img/key.png" class="rounded" onclick="select_key(1)" style="width:50%">
                             </div>
-                            <div class="input-group m-2 w-75 mx-auto">
+                            <div class="input-group m-2 w-100 mx-auto">
                                 <button class="btn btn-light border border-1 border-dark text-dark" onclick="update_modal_n_alice()" data-bs-toggle="modal" data-bs-target="#modal-n-alice" type="button">n=</button>
                                 <input id="public-n-alice" type="text" class="form-control border border-1 border-dark" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
-                            <div class="input-group m-2 w-75 mx-auto">
+                            <div class="input-group m-2 w-100 mx-auto">
                                 <button class="btn btn-light border border-1 border-dark text-dark" onclick="update_modal_public_e_alice()" data-bs-toggle="modal" data-bs-target="#modal-public-e-alice" type="button">e=</button>
                                 <input id="public-e-alice" type="text" class="form-control border border-1 border-dark" placeholder="" aria-label="Username" aria-describedby="basic-addon1">                            
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class=col-4>
-                    <div class="text-center mt-2">
-                        <button id="button-oscar" type="button" class="btn btn-dark" onclick="change_view('oscar')">Internet und Oscar</button>
-                    </div>
-                    <div class="row my-2">
-                        <div class="text-center my-4" style=""> 
-                            <img src="img/hacker3.png" class="rounded" style="width:100%">
-                        </div>     
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="text-center mt-2">
-                        <button id="button-bob" type="button" class="btn btn-dark w-25" onclick="change_view('bob')">Bob</button>
-                        <button type="button" class="btn btn-white" onclick="gen_key('bob')">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
-                            <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
-                            </svg>
-                        </button> 
-                    </div>
-                    <div class="row my-2">
-                        <div id="key-2" class="col-5 border rounded mx-auto d-flex flex-column" >
-                            <div class="text-center my-2">
-                                <span>öffentlicher Schlüssel</span>
-                            </div>
-                            <div class="text-center m-2" style=""> 
-                                <img src="img/key.png" class="rounded" onclick="select_key(2)" style="width:50%">
-                            </div>
-                            <div class="input-group m-2 w-75 mx-auto">
-                                <button class="btn btn-light border border-1 border-dark text-dark" onclick="update_modal_n_bob()" data-bs-toggle="modal" data-bs-target="#modal-n-bob" type="button" id="button-addon1">n=</button>
-                                <input id="public-n-bob" type="text" class="form-control border border-1 border-dark" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group m-2 w-75 mx-auto">
-                                <button class="btn btn-light border border-1 border-dark text-dark" onclick="update_modal_public_e_bob()" data-bs-toggle="modal" data-bs-target="#modal-public-e-bob" type="button" id="button-addon1">e=</button>
-                                <input id="public-e-bob" type="text" class="form-control border border-1 border-dark" placeholder="" aria-label="Username" aria-describedby="basic-addon1">                            
-                            </div>                        
-                        </div>
-                        <div id="key-3" class="col-5 border rounded mx-auto d-flex flex-column">
-                            <div class="text-center my-2">
-                                <span>privater Schlüssel</span>
-                            </div>
-                            <div class="text-center m-2" style=""> 
-                                <img src="img/tresor.png" class="rounded" onclick="select_key(3)" style="width:50%">
-                            </div>
-                            <div class="input-group m-2 w-75 mx-auto" style="">
-                                <button class="btn btn-light border border-1 border-dark text-dark" onclick="update_modal_n_bob()" data-bs-toggle="modal" data-bs-target="#modal-n-bob" type="button" id="button-addon1">n=</button>
-                                <input id="private-n-bob" type="text" class="form-control border border-1 border-dark" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                            </div>
-                            <div class="input-group m-2 w-75 mx-auto">
-                                <button class="btn btn-light border border-1 border-dark text-dark" onclick="update_modal_private_d_bob()" data-bs-toggle="modal" data-bs-target="#modal-private-d-bob" type="button" id="button-addon1">d=</button>
-                                <input id="private-d-bob" type="text" class="form-control border border-1 border-dark" placeholder="" aria-label="Username" aria-describedby="basic-addon1">                            
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-            <div id="msg-container" class="row m-3">
-                <div id="col-alice" class="col-4">
-                    <div class="m-2">
-                        <div id="alice-learning-0" class="" style="display:none">
+                    <div id="alice-msg-container" class="m-2">
+                        <div id="alice-msg-0" class="" style="display:none">
                             <textarea class="form-control rounded-0" placeholder="Nachricht von/an Alice" id="msg-alice" rows="3"></textarea>
                         </div>
-                        <div id="alice-learning-1" class="btn-group w-100" style="display:none">
+                        <div id="alice-msg-1" class="btn-group w-100" style="display:none">
                             <div class="w-25 btn-group">
-                                <button id="str2num-alice" onclick="msg2int_app('alice')" class="btn btn-outline-dark rounded-0 w-50" type="button">
+                                <button id="str2num-alice" onclick="msg2int_app('alice')" class="btn btn-outline-dark rounded-0 w-50 p-0" type="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
                                     </svg>
                                 </button>
-                                <button id="num2str-alice" onclick="int2msg_app('alice')" class="btn btn-outline-dark rounded-0 w-50" type="button">
+                                <button id="num2str-alice" onclick="int2msg_app('alice')" class="btn btn-outline-dark rounded-0 w-50 p-0" type="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                                     </svg>
@@ -168,10 +120,10 @@
                                 </svg>
                             </button>
                         </div>
-                        <div id="alice-learning-2" class="" style="display:block">
+                        <div id="alice-msg-2" class="" style="display:block">
                             <textarea class="form-control rounded-0" placeholder="Zahlen" id="num-alice" rows="3"></textarea>
                         </div>
-                        <div id="alice-learning-3" class="btn-group w-100">
+                        <div id="alice-msg-3" class="btn-group w-100">
                             <button class="btn btn-outline-dark rounded-0 w-75" onclick="use_key('alice')" type="button">Schlüssel anwenden</button>
                             <button class="btn btn-outline-dark rounded-0 w-25" onclick="send_msg('alice')" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
@@ -181,23 +133,85 @@
                             </button>
                         </div>
                     </div>
-
                 </div>
 
-                <div id="col-oscar" class="col-4">
-                    <div class="m-2">
+                <div id="oscar" class="col-sm-12 col-md-4">
+                    <div id="oscar-top" class="text-center mt-2">
+                        <button id="button-oscar" type="button" class="btn btn-dark" onclick="change_view('oscar')">Internet und Eve</button>
+                    </div>
+                    <div id="oscar-image" class="row my-2">
+                        <div class="text-center my-4" style=""> 
+                            <img src="img/hacker3.png" class="rounded" style="width:100%">
+                        </div>     
+                    </div>
+                    <div id="oscar-msg-container" class="my-2">
                         <div class="">
                             <textarea id="inet" class="form-control rounded-0" placeholder="abgefangene Nachricht" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                     </div>
-                </div>
 
-                <div id="col-bob" class="col-4">
-                    <div class="m-2">
-                        <div id="bob-learning-0" class="" style="display:none">
+                </div>
+                <div id="bob" class="col-sm-12 col-md-4">
+                    <div id="bob-top" class="text-center mt-2">
+                        <button id="button-bob" type="button" class="btn btn-dark w-25" onclick="change_view('bob')">Bob</button>
+                        <button type="button" class="btn btn-white" onclick="gen_key('bob')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+                            <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+                            </svg>
+                        </button> 
+                    </div>
+                    <div id="bob-key-container" class="row my-2">
+                        <div id="key-sym-bob" class="col-8 border rounded mx-auto d-flex flex-column d-none">
+                            <div class="text-center my-2">
+                                <span>geheimer Schlüssel</span>
+                            </div>
+                            <div class="text-center m-2" style=""> 
+                                <img src="img/tresor.png" class="rounded" onclick="select_key(0)" style="width:50%">
+                            </div>
+                            <div id="secret-key-container" class="input-group m-2 w-50 mx-auto" style="">
+                                <button class="btn btn-light border border-1 border-dark text-dark wrong-n-alice" type="button">k=</button>
+                                <input id="secret-key-bob" type="text" class="form-control border border-1 border-dark wrong-n-alice" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div id="key-2" class="col-5 border rounded mx-auto d-flex flex-column" >
+                            <div class="text-center my-2">
+                                <span>öffentlicher Schlüssel</span>
+                            </div>
+                            <div class="text-center m-2" style=""> 
+                                <img src="img/key.png" class="rounded" onclick="select_key(2)" style="width:50%">
+                            </div>
+                            <div class="input-group m-2 w-100 mx-auto">
+                                <button class="btn btn-light border border-1 border-dark text-dark" onclick="update_modal_n_bob()" data-bs-toggle="modal" data-bs-target="#modal-n-bob" type="button" id="button-addon1">n=</button>
+                                <input id="public-n-bob" type="text" class="form-control border border-1 border-dark" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group m-2 w-100 mx-auto">
+                                <button class="btn btn-light border border-1 border-dark text-dark" onclick="update_modal_public_e_bob()" data-bs-toggle="modal" data-bs-target="#modal-public-e-bob" type="button" id="button-addon1">e=</button>
+                                <input id="public-e-bob" type="text" class="form-control border border-1 border-dark" placeholder="" aria-label="Username" aria-describedby="basic-addon1">                            
+                            </div>                        
+                        </div>
+                        <div id="key-3" class="col-5 border rounded mx-auto d-flex flex-column">
+                            <div class="text-center my-2">
+                                <span>privater Schlüssel</span>
+                            </div>
+                            <div class="text-center m-2" style=""> 
+                                <img src="img/tresor.png" class="rounded" onclick="select_key(3)" style="width:50%">
+                            </div>
+                            <div class="input-group m-2 w-100 mx-auto" style="">
+                                <button class="btn btn-light border border-1 border-dark text-dark" onclick="update_modal_n_bob()" data-bs-toggle="modal" data-bs-target="#modal-n-bob" type="button" id="button-addon1">n=</button>
+                                <input id="private-n-bob" type="text" class="form-control border border-1 border-dark" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group m-2 w-100 mx-auto">
+                                <button class="btn btn-light border border-1 border-dark text-dark" onclick="update_modal_private_d_bob()" data-bs-toggle="modal" data-bs-target="#modal-private-d-bob" type="button" id="button-addon1">d=</button>
+                                <input id="private-d-bob" type="text" class="form-control border border-1 border-dark" placeholder="" aria-label="Username" aria-describedby="basic-addon1">                            
+                            </div>
+                        </div>
+                    </div> 
+                    <div id="bob-msg-container" class="m-2">
+                        <div id="bob-msg-0" class="" style="display:none">
                             <textarea id="msg-bob" class="form-control rounded-0" placeholder="Nachricht von/an Bob" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
-                        <div id="bob-learning-1" class="btn-group w-100" style="display:none">
+                        <div id="bob-msg-1" class="btn-group w-100" style="display:none">
                             <button class="btn btn-outline-dark rounded-0 w-25" onclick="send_msg('bob')" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
@@ -206,22 +220,22 @@
                             </button>
                             <button class="btn btn-outline-dark rounded-0 w-50" onclick="use_key('bob')" type="button">Schlüssel anwenden</button>
                             <div class="w-25 btn-group"> 
-                                <button id="num2str-bob" onclick="int2msg_app('bob')" class="btn btn-outline-dark rounded-0 w-50" type="button">
+                                <button id="num2str-bob" onclick="int2msg_app('bob')" class="btn btn-outline-dark rounded-0 w-50 p-0" type="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                                     </svg>
                                 </button>
-                                <button id="str2num-bob" onclick="msg2int_app('bob')" class="btn btn-outline-dark rounded-0 w-50" type="button">
+                                <button id="str2num-bob" onclick="msg2int_app('bob')" class="btn btn-outline-dark rounded-0 w-50 p-0" type="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
                                     </svg>
                                 </button>
                             </div>
                         </div>                        
-                        <div id="bob-learning-2" class="" style="display:block">
+                        <div id="bob-msg-2" class="" style="display:block">
                             <textarea id="num-bob" class="form-control rounded-0" placeholder="Zahlen" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
-                        <div id="bob-learning-3" class="btn-group w-100">
+                        <div id="bob-msg-3" class="btn-group w-100">
                             <button class="btn btn-outline-dark rounded-0 w-25" onclick="send_msg('bob')" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
@@ -232,11 +246,102 @@
                         </div> 
                     </div>
                 </div>
-
             </div>
+
+            <!--<div id="msg-container" class="row m-3">-->
+                <!--[><div id="col-alice" class="col-4"><]-->
+                    <!--[><div class="m-2"><]-->
+                        <!--[><div id="alice-learning-0" class="" style="display:none"><]-->
+                            <!--[><textarea class="form-control rounded-0" placeholder="Nachricht von/an Alice" id="msg-alice" rows="3"></textarea><]-->
+                            <!--[></div><]-->
+                        <!--[><div id="alice-learning-1" class="btn-group w-100" style="display:none"><]-->
+                            <!--[><div class="w-25 btn-group"><]-->
+                                <!--[><button id="str2num-alice" onclick="msg2int_app('alice')" class="btn btn-outline-dark rounded-0 w-50" type="button"><]-->
+                                    <!--[><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16"><]-->
+                                    <!--[><path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/><]-->
+                                    <!--[></svg><]-->
+                                    <!--[></button><]-->
+                                <!--[><button id="num2str-alice" onclick="int2msg_app('alice')" class="btn btn-outline-dark rounded-0 w-50" type="button"><]-->
+                                    <!--[><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16"><]-->
+                                    <!--[><path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/><]-->
+                                    <!--[></svg><]-->
+                                    <!--[></button><]-->
+                                <!--[></div><]-->
+                            <!--[><button class="btn btn-outline-dark rounded-0 w-50" onclick="use_key('alice')" type="button">Schlüssel anwenden</button><]-->
+                            <!--[><button class="btn btn-outline-dark rounded-0 w-25" onclick="send_msg('alice')" type="button"><]-->
+                                <!--[><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16"><]-->
+                                <!--[><path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/><]-->
+                                <!--[><path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/><]-->
+                                <!--[></svg><]-->
+                                <!--[></button><]-->
+                            <!--[></div><]-->
+                        <!--[><div id="alice-learning-2" class="" style="display:block"><]-->
+                            <!--[><textarea class="form-control rounded-0" placeholder="Zahlen" id="num-alice" rows="3"></textarea><]-->
+                            <!--[></div><]-->
+                        <!--[><div id="alice-learning-3" class="btn-group w-100"><]-->
+                            <!--[><button class="btn btn-outline-dark rounded-0 w-75" onclick="use_key('alice')" type="button">Schlüssel anwenden</button><]-->
+                            <!--[><button class="btn btn-outline-dark rounded-0 w-25" onclick="send_msg('alice')" type="button"><]-->
+                                <!--[><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16"><]-->
+                                <!--[><path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/><]-->
+                                <!--[><path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/><]-->
+                                <!--[></svg><]-->
+                                <!--[></button><]-->
+                            <!--[></div><]-->
+                        <!--[></div><]-->
+                    <!--[></div><]-->
+
+                <!--<div id="col-oscar" class="col-4">-->
+                    <!--<div class="m-2">-->
+                        <!--<div class="">-->
+                            <!--<textarea id="inet" class="form-control rounded-0" placeholder="abgefangene Nachricht" id="exampleFormControlTextarea1" rows="3"></textarea>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--<div id="col-bob" class="col-4">-->
+                    <!--<div class="m-2">-->
+                        <!--<div id="bob-learning-0" class="" style="display:none">-->
+                            <!--<textarea id="msg-bob" class="form-control rounded-0" placeholder="Nachricht von/an Bob" id="exampleFormControlTextarea1" rows="3"></textarea>-->
+                            <!--</div>-->
+                        <!--<div id="bob-learning-1" class="btn-group w-100" style="display:none">-->
+                            <!--<button class="btn btn-outline-dark rounded-0 w-25" onclick="send_msg('bob')" type="button">-->
+                                <!--<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">-->
+                                <!--<path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>-->
+                                <!--<path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>-->
+                                <!--</svg>-->
+                                <!--</button>-->
+                            <!--<button class="btn btn-outline-dark rounded-0 w-50" onclick="use_key('bob')" type="button">Schlüssel anwenden</button>-->
+                            <!--<div class="w-25 btn-group"> -->
+                                <!--<button id="num2str-bob" onclick="int2msg_app('bob')" class="btn btn-outline-dark rounded-0 w-50" type="button">-->
+                                    <!--<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">-->
+                                    <!--<path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>-->
+                                    <!--</svg>-->
+                                    <!--</button>-->
+                                <!--<button id="str2num-bob" onclick="msg2int_app('bob')" class="btn btn-outline-dark rounded-0 w-50" type="button">-->
+                                    <!--<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">-->
+                                    <!--<path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>-->
+                                    <!--</svg>-->
+                                    <!--</button>-->
+                                <!--</div>-->
+                            <!--</div>                        -->
+                        <!--<div id="bob-learning-2" class="" style="display:block">-->
+                            <!--<textarea id="num-bob" class="form-control rounded-0" placeholder="Zahlen" id="exampleFormControlTextarea1" rows="3"></textarea>-->
+                            <!--</div>-->
+                        <!--<div id="bob-learning-3" class="btn-group w-100">-->
+                            <!--<button class="btn btn-outline-dark rounded-0 w-25" onclick="send_msg('bob')" type="button">-->
+                                <!--<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">-->
+                                <!--<path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>-->
+                                <!--<path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>-->
+                                <!--</svg>-->
+                                <!--</button>-->
+                            <!--<button class="btn btn-outline-dark rounded-0 w-75" onclick="use_key('bob')" type="button">Schlüssel anwenden</button>-->
+                            <!--</div> -->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
         </div>
 
-        <!-- Modal -->
+        <!-- Modals -->
         <div class="modal" id="modal-n-alice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -347,29 +452,37 @@
                         <h5 class="modal-title" id="exampleModalLabel">Einstellungen</h5>
                     </div>
                     <div class="modal-body">
-                        <div class="input-group mb-3 w-100 justify-content-center"> 
-                            <label class="input-group-text" for="inputGroupSelect01">Modus</label>
+                        <div class="input-group mb-3 w-100"> 
+                            <label class="input-group-text w-25" for="inputGroupSelect01">Art</label>
+                            <button id="ceasar" class="btn btn-outline-secondary w-25" type="button" onclick="activate_ceasar()">Caesar</button>
+                            <button id="rsa" class="btn btn-secondary w-25" type="button" onclick="activate_rsa()">RSA</button>
+                        </div> 
+                        <div class="input-group mb-3 w-100"> 
+                            <label class="input-group-text w-25" for="inputGroupSelect01">Modus</label>
                             <button id="modus-0" class="btn btn-secondary w-25" type="button" onclick="activate_modus(0)">Zahlen</button>
                             <button id="modus-1" class="btn btn-outline-secondary w-25" type="button" onclick="activate_modus(1)">Nachricht</button>
                             <button id="modus-2" class="btn btn-outline-secondary w-25" type="button" onclick="activate_modus(2)">Beides</button>
                         </div> 
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Größe der automatisch erzeugten Primzahlen (in Bits)</span>
-                            <input id="key-size-alice" type="text" class="form-control" placeholder="min. 3, start 32" value="4" aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-                        <div id="modus-12-settings" style="display:none">
+                        <div id="rsa-settings">
                             <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupSelect01">Zuordnung Buchstaben/Zahlen</label>
-                                <select id="msg_num_table" class="form-select" id="inputGroupSelect01">
-                                    <option value="1">einfache Tabelle (s.h. Skript)</option>
-                                    <option value="2">ASCII-Tabelle</option>
-                                    <option value="3">eigene Tabelle</option>
-                                </select>
+                                <span class="input-group-text" id="basic-addon1">Größe Primzahlen (Bits)</span>
+                                <input id="key-size-alice" type="text" class="form-control" placeholder="min. 3, start 32" value="8" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Zerlegung der Nachricht in Blöcke</span>
-                                <input id="slice-size" type="text" class="form-control" placeholder="4" value="1" aria-label="Username" aria-describedby="basic-addon1">
+                            <div id="modus-12-settings" style="display:none">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="inputGroupSelect01">Buchstaben/Zahlen</label>
+                                    <select id="msg_num_table" class="form-select" id="inputGroupSelect01">
+                                        <option value="1">einfache Tabelle (s.h. Skript)</option>
+                                        <option value="2">ASCII-Tabelle</option>
+                                        <option value="3">eigene Tabelle</option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">Zerlegung der Nachricht in Blöcke</span>
+                                    <input id="slice-size" type="text" class="form-control" placeholder="4" value="1" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
@@ -397,6 +510,7 @@
 
 
         <script src="rsa.js"></script>
+        <script src="ceasar.js"></script>
         <script src="script.js"></script>
     </body>
 </html>

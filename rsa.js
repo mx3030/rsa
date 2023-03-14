@@ -156,6 +156,7 @@ function rsaDec(n,d,y){
 /*-----------------------------------------*/
 
 function base2int(b,l){
+    /*input base and array b [b1,b2,b3] of ints -> build new number res = b[3]*b^0+b[2]*b+b[1]*b^2*/
     var res = 0n;
     l.reverse();
     for(var i=0;i<l.length;i++){
@@ -165,14 +166,16 @@ function base2int(b,l){
 }
 
 function string2int(s,table=[-1]){
+    /*convert a string to number via base representation*/
     var arr=[]
     if(table[0]==-1){
-        /*use ascii*/
+        /*use ascii and convert string to number via base2int b=256*/
         for(var i=0;i<s.length;i++){
             arr.push(BigInt(s[i].charCodeAt(0)));
         }
         m = base2int(256n,arr);
     } else {
+        /*use own tables*/
         var len = BigInt(table.length);
         for (var i=0;i<s.length;i++){
             arr.push(BigInt(table.indexOf(s[i])+1));
